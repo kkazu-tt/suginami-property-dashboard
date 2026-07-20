@@ -10,6 +10,8 @@ type ChartValue = {
   value: number;
   low?: number;
   high?: number;
+  baseGrowthPercent?: number;
+  redevelopmentContributionBps?: number;
   sampleCount?: number;
   status: "actual" | "provisional" | "nowcast" | "forecast";
 };
@@ -49,6 +51,8 @@ function valueForPeriod(series: PriceTrendSeries, period: string): ChartValue | 
     value: forecast.midpoint,
     low: forecast.low,
     high: forecast.high,
+    baseGrowthPercent: forecast.baseGrowthPercent,
+    redevelopmentContributionBps: forecast.redevelopmentContributionBps,
     status: forecast.status,
   };
 }
@@ -321,7 +325,7 @@ export function PriceTrendChart({ trend }: { trend: PriceTrend }) {
                 <strong>{mode === "index" ? formatIndex(displayValue) : formatAmount(displayValue)}</strong>
                 <small>
                   {item.low !== undefined && item.high !== undefined
-                    ? `中心 ${formatAmount(item.value)} ・ 80% ${item.low.toFixed(1)}〜${item.high.toFixed(1)}`
+                    ? `中心 ${formatAmount(item.value)} ・ 80% ${item.low.toFixed(1)}〜${item.high.toFixed(1)}${series.id === "suginami" ? ` ・ 基礎 ${item.baseGrowthPercent?.toFixed(1)}% / 再開発 ${item.redevelopmentContributionBps === 0 ? "0.00" : `+${((item.redevelopmentContributionBps ?? 0) / 100).toFixed(2)}`}pt` : ""}`
                     : `${formatAmount(item.value)} ・ n=${item.sampleCount?.toLocaleString("ja-JP")}`}
                 </small>
               </div>
@@ -330,7 +334,7 @@ export function PriceTrendChart({ trend }: { trend: PriceTrend }) {
         </div>
 
         <figcaption>
-          実線は取引実績、破線はモデル推計です。薄い帯は杉並区・東京23区の80%予測レンジで、80%の確率を保証するものではありません。
+          実線は取引実績、破線はモデル推計です。杉並区の破線は再開発の確度差分を含みます。薄い帯は杉並区・東京23区の80%予測レンジで、80%の確率を保証するものではありません。
           縦軸は差を読みやすくするため0起点ではありません。
         </figcaption>
       </figure>

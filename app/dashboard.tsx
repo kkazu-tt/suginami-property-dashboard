@@ -37,6 +37,11 @@ function roundToTen(value: number) {
   return Math.round(value / 10) * 10;
 }
 
+function formatBasisPoints(basisPoints: number) {
+  if (basisPoints === 0) return "0.00pt";
+  return `${basisPoints > 0 ? "+" : "−"}${(Math.abs(basisPoints) / 100).toFixed(2)}pt`;
+}
+
 export function Dashboard({ snapshot }: DashboardProps) {
   const [inputs, setInputs] = useState<HomeInputs>({
     area: "",
@@ -111,6 +116,17 @@ export function Dashboard({ snapshot }: DashboardProps) {
     };
   }, [inputs, snapshot]);
 
+  const redevelopmentProjection = useMemo(() => {
+    const nowcast = snapshot.redevelopment.forecastBreakdown.find((item) => item.period === "2026");
+    const outlook = snapshot.redevelopment.forecastBreakdown.find((item) => item.period === "2027");
+    if (!nowcast || !outlook || nowcast.adjustedMidpoint <= 0 || nowcast.baselineMidpoint <= 0) return null;
+
+    return {
+      baseline: roundToTen(valuation.midpoint * (outlook.baselineMidpoint / nowcast.baselineMidpoint)),
+      adjusted: roundToTen(valuation.midpoint * (outlook.adjustedMidpoint / nowcast.adjustedMidpoint)),
+    };
+  }, [snapshot.redevelopment.forecastBreakdown, valuation.midpoint]);
+
   const updateInput = (key: keyof HomeInputs, value: string) => {
     setInputs((current) => ({ ...current, [key]: value }));
   };
@@ -129,7 +145,7 @@ export function Dashboard({ snapshot }: DashboardProps) {
 
     setAdvice({
       ...snapshot.aiAnalysis,
-      summary: `${conditionText} 東京23区では価格上昇と成約件数の減少が同時に起きています。まず同一棟の直近成約と販売期間を確認し、売出価格ではなく成約見込みを基準に判断するのが妥当です。`,
+      summary: `${conditionText} 東京23区では価格上昇と成約件数の減少が同時に起きています。再開発は既知情報の二重計上を避け、2027年の確度差分だけ+0.05ポイント反映しています。まず同一棟の直近成約と販売期間を確認し、売出価格ではなく成約見込みを基準に判断するのが妥当です。`,
       confidence: `${valuation.confidence}（入力条件の簡易補正）`,
       generatedAt: new Date().toISOString(),
     });
@@ -150,6 +166,7 @@ export function Dashboard({ snapshot }: DashboardProps) {
         <nav className="topnav" aria-label="ページ内ナビゲーション">
           <a href="#valuation">3LDK相場</a>
           <a href="#trend">価格推移</a>
+          <a href="#redevelopment">再開発</a>
           <a href="#weekly">東京23区の今週</a>
           <a href="#market">地域比較</a>
           <a href="#sources">データ</a>
@@ -331,6 +348,112 @@ export function Dashboard({ snapshot }: DashboardProps) {
 
       <section className="section-block trend-section" id="trend" aria-labelledby="price-trend-title">
         <PriceTrendChart trend={snapshot.priceTrend} />
+      </section>
+
+      <section className="section-block redevelopment-section" id="redevelopment" aria-labelledby="redevelopment-title">
+        <div className="section-heading redevelopment-heading">
+          <div>
+            <p className="eyebrow">REDEVELOPMENT &amp; URBAN CHANGE</p>
+            <h2 id="redevelopment-title">{snapshot.redevelopment.title}</h2>
+          </div>
+          <p className="section-note">{snapshot.redevelopment.asOfLabel} ・ 公式一次資料</p>
+        </div>
+
+        <div className="redevelopment-lead">
+          <p>{snapshot.redevelopment.lead}</p>
+          <div aria-label="再開発の価格推計への反映概要">
+            <span><small>現在価格</small><strong>{formatBasisPoints(snapshot.redevelopment.currentEstimateAdjustmentBps)}</strong></span>
+            {snapshot.redevelopment.forecastBreakdown.map((item) => (
+              <span key={item.period}>
+                <small>{item.period}年</small>
+                <strong>{formatBasisPoints(item.contributionBps)}</strong>
+              </span>
+            ))}
+            <span><small>年次上限</small><strong>±{(snapshot.redevelopment.model.annualCapBps / 100).toFixed(2)}pt</strong></span>
+          </div>
+        </div>
+
+        <div className="redevelopment-layout">
+          <div className="redevelopment-timeline" role="list" aria-label="周辺再開発の進捗">
+            {snapshot.redevelopment.projects.map((project) => (
+              <article className="redevelopment-project" role="listitem" key={project.id}>
+                <div className="redevelopment-marker" aria-hidden="true"><i /></div>
+                <div className="redevelopment-project-body">
+                  <div className="redevelopment-project-meta">
+                    <span className={`redevelopment-stage stage-${project.stageTone}`}>{project.stage}</span>
+                    <span>{project.timing}</span>
+                  </div>
+                  <div className="redevelopment-project-title">
+                    <div>
+                      <h3>{project.name}</h3>
+                      <p>{project.area} ・ {project.relation}</p>
+                    </div>
+                    <span>{project.effect}</span>
+                  </div>
+                  <p className="redevelopment-summary">{project.summary}</p>
+                  <div className="redevelopment-impact">
+                    <p><strong>価格への経路</strong>{project.priceChannel}</p>
+                    <div>
+                      <span>2027寄与 {formatBasisPoints(project.contribution2027Bps)}</span>
+                      <small>{project.confidence}</small>
+                      <a href={project.sourceUrl} target="_blank" rel="noreferrer">{project.sourceLabel} ↗</a>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <aside className="redevelopment-model-card" aria-labelledby="redevelopment-model-title">
+            <div className="redevelopment-model-header">
+              <div><p className="eyebrow">FORECAST DECOMPOSITION</p><h3 id="redevelopment-model-title">価格推計への織り込み</h3></div>
+              <span>{snapshot.redevelopment.model.name}</span>
+            </div>
+
+            <p className="redevelopment-current-note">{snapshot.redevelopment.currentEstimateNote}</p>
+
+            <div className="redevelopment-forecast-table" role="table" aria-label="再開発反映前後の杉並区予測">
+              <div className="redevelopment-forecast-row header" role="row">
+                <span role="columnheader">年</span><span role="columnheader">基礎予測</span><span role="columnheader">再開発</span><span role="columnheader">反映後</span>
+              </div>
+              {snapshot.redevelopment.forecastBreakdown.map((item) => (
+                <div className="redevelopment-forecast-row" role="row" key={item.period}>
+                  <span role="cell"><strong>{item.period}</strong><small>{item.label}</small></span>
+                  <span role="cell">{item.baselineMidpoint.toFixed(1)}<small>万円/㎡</small></span>
+                  <span role="cell" className={item.contributionBps > 0 ? "positive" : ""}>{formatBasisPoints(item.contributionBps)}</span>
+                  <span role="cell"><strong>{item.adjustedMidpoint.toFixed(1)}</strong><small>万円/㎡</small></span>
+                </div>
+              ))}
+            </div>
+
+            {redevelopmentProjection ? (
+              <div className="redevelopment-building-projection">
+                <span>対象棟3LDK・2027年参考中心</span>
+                <strong>{formatPrice(redevelopmentProjection.adjusted)}</strong>
+                <p>基礎 {formatPrice(redevelopmentProjection.baseline)} → 再開発反映後。現在の参考中央値に杉並区予測の伸びを機械的に当てた参考値です。</p>
+              </div>
+            ) : null}
+
+            <div className="redevelopment-model-copy">
+              <p>{snapshot.redevelopment.model.rule}</p>
+              <p>{snapshot.redevelopment.model.currentTreatment}</p>
+              <p>{snapshot.redevelopment.model.guardrail}</p>
+            </div>
+
+            <details className="redevelopment-method-details">
+              <summary>採点と更新ルールを見る</summary>
+              <ul>
+                <li>構想・都市計画・着工・供用確定を別の確度で評価</li>
+                <li>交通利便、生活機能、防災性、工事負担を分けて評価</li>
+                <li>新築住宅の供給増は競合として控除</li>
+                <li>同一案件は事業IDで重複排除し、予定の再掲では加点しない</li>
+                <li>延期・中止はマイナス、供用後は実績で検証</li>
+              </ul>
+            </details>
+
+            <p className="redevelopment-disclaimer">{snapshot.redevelopment.model.disclaimer}</p>
+          </aside>
+        </div>
       </section>
 
       <section className="section-block weekly-section" id="weekly" aria-labelledby="weekly-title">
