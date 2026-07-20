@@ -47,7 +47,6 @@ const forecastSignals = {
   priceYoy: 1.5,
   volumeYoy: -12.8,
   inventoryYoy: 19.0,
-  fixedRate: 3.14,
 };
 
 function clampNumber(value: number, min: number, max: number) {
@@ -385,11 +384,6 @@ export const marketSnapshot = {
         label: "城西 6月在庫",
         value: `前年比 +${forecastSignals.inventoryYoy.toFixed(1)}%`,
         direction: "down",
-      },
-      {
-        label: "フラット35 7月",
-        value: `${forecastSignals.fixedRate.toFixed(2)}%`,
-        direction: "neutral",
       },
     ],
     model: {
