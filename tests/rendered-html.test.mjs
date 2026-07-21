@@ -10,7 +10,7 @@ test("statically renders the public market dashboard", async () => {
   const html = await renderedHtml();
 
   assert.match(html, /<html[^>]+lang="ja"/i);
-  assert.match(html, /パークシティ杉並/);
+  assert.match(html, /杉並区内の対象タワーマンション/);
   assert.match(html, /3LDKの参考価格/);
   assert.match(html, /3LDK取引㎡単価の推移と予測/);
   assert.match(html, /2026年 ナウキャスト/);

@@ -248,7 +248,7 @@ export const marketSnapshot = {
   asOfLabel: "2026年7月21日 12:00 JST",
   latestMarketPeriod: "2026年6月",
   property: {
-    name: "パークシティ杉並 セントラルタワー",
+    name: "杉並区内の対象タワーマンション",
     areaLabel: "杉並区・方南町エリア",
     built: "2000年（築約26年）",
     station: "方南町駅 徒歩圏（分譲時資料）",
@@ -600,7 +600,7 @@ export const marketSnapshot = {
     state: "observe" as const,
     title: "高値圏だが、成約の鈍化を見極める週",
     summary:
-      `パークシティ杉並 セントラルタワーの3LDK参考価格は8,280万〜9,640万円。杉並区3LDKの2026年ナウキャストは${suginamiNowcastText}ですが、区全体の参考推計です。再開発は現在価格へ重ねて足さず、2027年の確度差分だけ+0.05ポイント反映しました。価格は高値圏でも成約件数は減っており、同一棟の新しい成約と事業の節目を確認する局面です。`,
+      `対象タワーマンションの3LDK参考価格は8,280万〜9,640万円。杉並区3LDKの2026年ナウキャストは${suginamiNowcastText}ですが、区全体の参考推計です。再開発は現在価格へ重ねて足さず、2027年の確度差分だけ+0.05ポイント反映しました。価格は高値圏でも成約件数は減っており、同一棟の新しい成約と事業の節目を確認する局面です。`,
     positives: [
       "東京23区の4〜6月成約㎡単価は前年比 +5.1%",
       "23区のファミリー型募集賃料は6月に前月比 +0.8%",
@@ -731,14 +731,14 @@ export const marketSnapshot = {
       usage: "旧計画解除後の再計画段階・想定工程",
     },
     {
-      label: "パークシティ杉並 分譲時資料",
+      label: "対象棟の分譲時公開資料",
       publisher: "三井不動産",
       url: "https://www.mitsuifudosan.co.jp/corporate/news/1999/0430_02/",
       tier: "A",
       usage: "物件基本情報",
     },
     {
-      label: "パークシティ杉並 参考相場・売買履歴",
+      label: "対象棟の参考相場・売買履歴",
       publisher: "IESHIL",
       url: "https://www.ieshil.com/buildings/663386/",
       tier: "B",

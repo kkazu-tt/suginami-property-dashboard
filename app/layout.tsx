@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-const title = "杉並ホームバリュー | パークシティ杉並 3LDK相場";
+const title = "杉並ホームバリュー | 対象タワーマンション 3LDK相場";
 const description =
-  "パークシティ杉並 セントラルタワーの3LDK参考価格と、東京23区の直近動向を毎週確認する公開ダッシュボード。";
+  "杉並区内の対象タワーマンションの3LDK参考価格と、東京23区の直近動向を毎週確認する公開ダッシュボード。";
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ??
   "https://kkazu-tt.github.io/suginami-property-dashboard/";
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
         url: socialImage,
         width: 1200,
         height: 630,
-        alt: "パークシティ杉並 セントラルタワー 3LDK相場",
+        alt: "杉並区内の対象タワーマンション 3LDK相場",
       },
     ],
   },
