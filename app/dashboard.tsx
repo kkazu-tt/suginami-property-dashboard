@@ -478,7 +478,7 @@ export function Dashboard({ snapshot }: DashboardProps) {
             <article key={indicator.label}>
               <div className="weekly-stat-meta">
                 <span className={`data-kind kind-${indicator.kind.toLowerCase()}`}>{indicator.kind}</span>
-                <small>{indicator.period}</small>
+                <small>{indicator.period} ・ {indicator.sample}</small>
               </div>
               <p>{indicator.label}</p>
               <strong>{indicator.value}</strong>

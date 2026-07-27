@@ -314,6 +314,7 @@ export const marketSnapshot = {
         direction: "down",
         kind: "CLOSE",
         period: "2026年4〜6月",
+        sample: "n=4,803",
       },
       {
         label: "23区 成約㎡単価",
@@ -322,6 +323,7 @@ export const marketSnapshot = {
         direction: "up",
         kind: "CLOSE",
         period: "2026年4〜6月",
+        sample: "n=4,803",
       },
       {
         label: "23区 6月成約㎡単価",
@@ -330,6 +332,7 @@ export const marketSnapshot = {
         direction: "down",
         kind: "CLOSE",
         period: "2026年6月",
+        sample: "n=1,716",
       },
       {
         label: "23区 70㎡売出価格",
@@ -338,6 +341,7 @@ export const marketSnapshot = {
         direction: "down",
         kind: "ASK",
         period: "2026年6月・7/23公表",
+        sample: "23区 n非公表／首都圏 n=38,780",
       },
       {
         label: "23区 募集賃料",
@@ -346,6 +350,7 @@ export const marketSnapshot = {
         direction: "up",
         kind: "RENT",
         period: "2026年6月・7/16公表",
+        sample: "23区 n非公表／首都圏3カ月 n=49,799",
       },
       {
         label: "城西 在庫件数",
@@ -354,6 +359,7 @@ export const marketSnapshot = {
         direction: "down",
         kind: "INVENTORY",
         period: "2026年6月",
+        sample: "n=4,707",
       },
       {
         label: "フラット35 最頻金利",
@@ -362,6 +368,7 @@ export const marketSnapshot = {
         direction: "up",
         kind: "RATE",
         period: "2026年7月",
+        sample: "金利指標（n対象外）",
       },
     ],
     movements: [
@@ -397,7 +404,7 @@ export const marketSnapshot = {
       },
     ],
     watchNext: [
-      "国土交通省の2026年1〜3月取引データ",
+      "国土交通省の2026年1〜3月取引データ（7月公表予定・公開確認待ち）",
       "日銀の7月30〜31日 金融政策決定会合",
       "東日本REINSの7月月例データ",
     ],
@@ -635,7 +642,7 @@ export const marketSnapshot = {
     ],
     confidence: "C（公開情報3件を中心に推定）",
     generatedAt: "2026-07-27T17:00:00+09:00",
-    nextReview: "2026-07-28",
+    nextReview: "2026-08-03",
   },
   updateSchedule: [
     {
