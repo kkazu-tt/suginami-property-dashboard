@@ -244,8 +244,8 @@ const suginamiNowcastText = suginamiNowcast
   : "算出待ち";
 
 export const marketSnapshot = {
-  asOf: "2026-07-27T17:00:00+09:00",
-  asOfLabel: "2026年7月27日 17:00 JST",
+  asOf: "2026-08-03T16:43:00+09:00",
+  asOfLabel: "2026年8月3日 16:43 JST",
   latestMarketPeriod: "2026年6月",
   property: {
     name: "杉並区内の対象タワーマンション",
@@ -302,10 +302,10 @@ export const marketSnapshot = {
     },
   ] satisfies BuildingComparable[],
   weeklyTokyo23: {
-    weekLabel: "2026年7月21日〜27日",
-    status: "売出価格は反落、成約の勢いも鈍化",
+    weekLabel: "2026年7月28日〜8月3日",
+    status: "売出反落に固定金利上昇が重なる",
     lead:
-      "今週は、7月23日公表の70㎡売出価格が26カ月ぶりに前月比マイナスとなりました。一方、4〜6月の成約㎡単価は前年同期比プラスのため、ASKとCLOSEを分けて確認します。",
+      "今週は、8月3日公表のフラット35最頻金利が前月から上昇しました。7月31日の日銀会合では政策金利を1.0%に据え置き。価格指標は前週から変わらず、ASKとCLOSEを分けて確認します。",
     indicators: [
       {
         label: "23区 成約件数",
@@ -363,11 +363,11 @@ export const marketSnapshot = {
       },
       {
         label: "フラット35 最頻金利",
-        value: "3.14%",
-        change: "前月 −0.07pt",
+        value: "3.29%",
+        change: "前月 +0.15pt",
         direction: "up",
         kind: "RATE",
-        period: "2026年7月",
+        period: "2026年8月・8/3公表",
         sample: "金利指標（n対象外）",
       },
     ],
@@ -398,15 +398,15 @@ export const marketSnapshot = {
       },
       {
         label: "金利",
-        title: "固定金利は小幅低下",
-        detail: "7月のフラット35最頻金利は3.14%。前月より下がりましたが、借入負担はなお高い水準です。",
-        tone: "neutral",
+        title: "固定金利は再上昇",
+        detail: "8月のフラット35最頻金利は3.29%と前月比+0.15ポイント。日銀は7月31日に政策金利1.0%を据え置きました。",
+        tone: "risk",
       },
     ],
     watchNext: [
-      "国土交通省の2026年1〜3月取引データ（7月公表予定・公開確認待ち）",
-      "日銀の7月30〜31日 金融政策決定会合",
+      "国土交通省の2026年1〜3月取引データ（公表予定を経過・公開確認待ち）",
       "東日本REINSの7月月例データ",
+      "日銀の9月17〜18日 金融政策決定会合",
     ],
     interpretation:
       "売り手優位の価格水準は続く一方、何でも早く売れる相場ではありません。同一棟・近い面積の成約根拠を優先し、売出価格と成約価格を分けて判断するのが今週の要点です。",
@@ -453,7 +453,7 @@ export const marketSnapshot = {
       "2025年は第4四半期の回答が今後追加される可能性があるため暫定値です。建築年・駅距離・所在・階・室内状態などの構成差は未調整で、個別住戸の査定や公的な価格指数ではありません。再開発の実現・延期・住宅供給増も不確実で、2026年ナウキャストと2027年予測は将来価格を保証しません。",
   },
   redevelopment: {
-    asOfLabel: "2026年7月27日確認",
+    asOfLabel: "2026年8月3日確認",
     title: "周辺再開発・まちづくりウォッチ",
     lead:
       "方南町生活圏の防災・歩行環境と、笹塚・中野・新宿の駅周辺更新を公式資料で追跡しています。対象棟への影響は距離、交通上のつながり、事業段階、供用時期、住宅供給を分けて評価します。",
@@ -619,9 +619,9 @@ export const marketSnapshot = {
   },
   aiAnalysis: {
     state: "observe" as const,
-    title: "売出反落と成約減を見極める週",
+    title: "固定金利上昇と成約減を見極める週",
     summary:
-      `対象タワーマンションの3LDK参考価格は8,280万〜9,640万円。23区の6月70㎡売出価格は1億2,741万円と前月比−0.8%ですが、ASKのため対象棟のESTIMATEや${suginamiNowcastText}のナウキャストは動かしていません。再開発も段階変化がなく、2027年の確度差分は+0.05ポイントのままです。`,
+      `対象タワーマンションの3LDK参考価格は8,280万〜9,640万円。8月のフラット35最頻金利は3.29%と前月比+0.15ポイントですが、新しいASK・CLOSE・INVENTORY・取引個票はなく、対象棟のESTIMATEや${suginamiNowcastText}のナウキャストは動かしていません。再開発も段階変化がなく、2027年の確度差分は+0.05ポイントのままです。`,
     positives: [
       "東京23区の4〜6月成約㎡単価は前年比 +5.1%",
       "23区のファミリー型募集賃料は6月に前月比 +0.8%",
@@ -632,6 +632,7 @@ export const marketSnapshot = {
       "東京23区の4〜6月成約件数は前年比 −13.2%",
       "東京23区の6月70㎡売出価格は前月比 −0.8%（前年比 +23.3%）",
       "城西地区では在庫と新規売出がともに前年比約 +19%",
+      "8月のフラット35最頻金利は3.29%と前月比 +0.15ポイント",
       "笹塚の新規住宅供給は生活利便向上と競合増の両面があり、中野新北口は再計画中",
       "予測信頼度は低〜中。2025年は暫定で、築年・駅距離などの構成差は未調整",
     ],
@@ -641,8 +642,8 @@ export const marketSnapshot = {
       "次回の月次統計、日銀会合、再開発の着工・供用・延期など公式な段階変化で再計算",
     ],
     confidence: "C（公開情報3件を中心に推定）",
-    generatedAt: "2026-07-27T17:00:00+09:00",
-    nextReview: "2026-08-03",
+    generatedAt: "2026-08-03T16:43:00+09:00",
+    nextReview: "2026-08-10",
   },
   updateSchedule: [
     {
@@ -767,18 +768,18 @@ export const marketSnapshot = {
       usage: "同一棟の参考成約",
     },
     {
-      label: "金融政策決定会合の予定",
+      label: "2026年7月 金融政策決定会合",
       publisher: "日本銀行",
-      url: "https://www.boj.or.jp/mopo/mpmsche_minu/index.htm",
+      url: "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/k260731a.pdf",
       tier: "A",
-      usage: "住宅ローン環境の次回確認日",
+      usage: "政策金利1.0%の据え置き確認",
     },
     {
-      label: "フラット35 金利情報",
+      label: "フラット35 金利情報（2026年8月）",
       publisher: "住宅金融支援機構",
-      url: "https://www.flat35.com/loan/index.html",
+      url: "https://www.simulation.jhf.go.jp/flat35/kinri/index.php/rates/top",
       tier: "A",
-      usage: "全期間固定金利の月次確認",
+      usage: "全期間固定金利の月次確認（8月3日公表）",
     },
   ],
 };
