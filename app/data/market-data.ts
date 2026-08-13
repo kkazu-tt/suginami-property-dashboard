@@ -47,15 +47,15 @@ export type PriceTrendSeries = {
 };
 
 const forecastSignals = {
-  priceYoy: 1.5,
-  volumeYoy: -12.8,
-  inventoryYoy: 19.0,
+  priceYoy: 2.7,
+  volumeYoy: -17.2,
+  inventoryYoy: 21.6,
 };
 
 const noRedevelopmentAdjustment = { 2026: 0, 2027: 0 };
 const suginamiRedevelopmentAdjustment = {
   // Known projects are assumed to be reflected in current comparables and the
-  // June market signal. Only the small, incremental change in certainty is
+  // July market signal. Only the small, incremental change in certainty is
   // added to the 2027 growth rate; the annual safeguard is +/-25bp.
   2026: 0,
   2027: 5,
@@ -94,7 +94,7 @@ function buildForecast(
   const recentCagr = threeYearsAgo > 0 ? (latest / threeYearsAgo) ** (1 / 3) - 1 : 0;
   const wardScore = clampNumber(0.6 * latestGrowth + 0.4 * recentCagr, -0.05, 0.1);
 
-  // June price momentum is the fast signal. Falling volume and rising stock
+  // July price momentum is the fast signal. Falling volume and rising stock
   // are disclosed alongside it, but are handled through shrinkage and the
   // uncertainty band instead of an opaque point-estimate adjustment.
   const marketSignal = forecastSignals.priceYoy / 100;
@@ -155,8 +155,8 @@ const priceTrendRows = [
     kind: "aggregate" as const,
     color: "#17312d",
     dash: "8 5",
-    values: [65.5, 69.2, 73.8, 80.0, 83.3, 90.0, 95.4],
-    samples: [3085, 3290, 3251, 2821, 2898, 3070, 2247],
+    values: [65.5, 69.2, 73.8, 80.0, 83.3, 90.0, 95.7],
+    samples: [3085, 3290, 3251, 2821, 2898, 3072, 2831],
   },
   {
     id: "suginami",
@@ -164,8 +164,8 @@ const priceTrendRows = [
     kind: "target" as const,
     color: "#1e685c",
     dash: "",
-    values: [80.0, 83.3, 90.0, 93.3, 91.4, 101.5, 105.8],
-    samples: [119, 130, 131, 96, 115, 106, 94],
+    values: [80.0, 83.3, 90.0, 93.3, 91.4, 101.5, 106.8],
+    samples: [119, 130, 131, 96, 115, 106, 108],
   },
   {
     id: "nakano",
@@ -174,7 +174,7 @@ const priceTrendRows = [
     color: "#52769a",
     dash: "4 4",
     values: [80.0, 81.7, 92.3, 91.7, 100.0, 108.4, 120.0],
-    samples: [59, 66, 57, 59, 61, 70, 58],
+    samples: [59, 66, 57, 59, 61, 70, 64],
   },
   {
     id: "setagaya",
@@ -182,8 +182,8 @@ const priceTrendRows = [
     kind: "comparison" as const,
     color: "#9a7356",
     dash: "12 5",
-    values: [81.7, 84.5, 92.3, 98.2, 102.1, 114.3, 118.1],
-    samples: [263, 328, 260, 221, 222, 234, 174],
+    values: [81.7, 84.5, 92.3, 98.2, 102.1, 114.3, 120.0],
+    samples: [263, 328, 260, 221, 222, 234, 225],
   },
   {
     id: "nerima",
@@ -191,8 +191,8 @@ const priceTrendRows = [
     kind: "comparison" as const,
     color: "#756a87",
     dash: "2 5",
-    values: [58.3, 58.7, 64.6, 69.2, 72.3, 78.5, 80.0],
-    samples: [228, 225, 202, 162, 197, 187, 133],
+    values: [58.3, 58.7, 64.6, 69.2, 72.3, 78.5, 81.7],
+    samples: [228, 225, 202, 162, 197, 187, 168],
   },
   {
     id: "shinjuku",
@@ -201,7 +201,7 @@ const priceTrendRows = [
     color: "#b05d43",
     dash: "10 4 2 4",
     values: [100.0, 100.0, 108.0, 109.1, 120.0, 129.4, 189.5],
-    samples: [77, 79, 80, 57, 88, 103, 67],
+    samples: [77, 79, 80, 57, 88, 103, 81],
   },
   {
     id: "shibuya",
@@ -210,7 +210,7 @@ const priceTrendRows = [
     color: "#c28a2e",
     dash: "3 3",
     values: [117.7, 117.6, 122.2, 146.7, 200.0, 171.4, 242.9],
-    samples: [40, 57, 57, 39, 44, 48, 41],
+    samples: [40, 57, 57, 39, 44, 48, 47],
   },
 ];
 
@@ -244,9 +244,9 @@ const suginamiNowcastText = suginamiNowcast
   : "算出待ち";
 
 export const marketSnapshot = {
-  asOf: "2026-08-03T16:43:00+09:00",
-  asOfLabel: "2026年8月3日 16:43 JST",
-  latestMarketPeriod: "2026年6月",
+  asOf: "2026-08-13T11:31:00+09:00",
+  asOfLabel: "2026年8月13日 11:31 JST",
+  latestMarketPeriod: "2026年7月",
   property: {
     name: "杉並区内の対象タワーマンション",
     areaLabel: "杉並区・方南町エリア",
@@ -302,37 +302,37 @@ export const marketSnapshot = {
     },
   ] satisfies BuildingComparable[],
   weeklyTokyo23: {
-    weekLabel: "2026年7月28日〜8月3日",
-    status: "売出反落に固定金利上昇が重なる",
+    weekLabel: "2026年8月10日〜8月16日",
+    status: "成約価格の上昇と流動性低下が併存",
     lead:
-      "今週は、8月3日公表のフラット35最頻金利が前月から上昇しました。7月31日の日銀会合では政策金利を1.0%に据え置き。価格指標は前週から変わらず、ASKとCLOSEを分けて確認します。",
+      "8月10日公表の東日本REINSでは、7月の東京23区成約㎡単価が前年比で上昇する一方、成約件数は減少しました。城西では在庫増も続いており、CLOSE・INVENTORY・ASKを分けて確認します。",
     indicators: [
       {
-        label: "23区 成約件数",
-        value: "4,803件",
-        change: "前年同期 −13.2%",
+        label: "23区 7月成約件数",
+        value: "1,509件",
+        change: "前年比 −17.2%",
         direction: "down",
         kind: "CLOSE",
-        period: "2026年4〜6月",
-        sample: "n=4,803",
+        period: "2026年7月・8/10公表",
+        sample: "n=1,509",
       },
       {
-        label: "23区 成約㎡単価",
-        value: "136.22万円",
-        change: "前年同期 +5.1%",
+        label: "23区 7月成約㎡単価",
+        value: "135.77万円",
+        change: "前年比 +2.7%／前月 +3.5%",
         direction: "up",
         kind: "CLOSE",
-        period: "2026年4〜6月",
-        sample: "n=4,803",
+        period: "2026年7月・8/10公表",
+        sample: "n=1,509",
       },
       {
-        label: "23区 6月成約㎡単価",
-        value: "131.15万円",
-        change: "前月 −0.1%",
+        label: "城西 7月成約㎡単価",
+        value: "156.93万円",
+        change: "前年比 +10.3%／前月 −4.5%",
         direction: "down",
         kind: "CLOSE",
-        period: "2026年6月",
-        sample: "n=1,716",
+        period: "2026年7月・8/10公表",
+        sample: "n=244",
       },
       {
         label: "23区 70㎡売出価格",
@@ -354,12 +354,12 @@ export const marketSnapshot = {
       },
       {
         label: "城西 在庫件数",
-        value: "4,707件",
-        change: "前年比 +19.0%",
+        value: "4,815件",
+        change: "前年比 +21.6%",
         direction: "down",
         kind: "INVENTORY",
-        period: "2026年6月",
-        sample: "n=4,707",
+        period: "2026年7月・8/10公表",
+        sample: "n=4,815",
       },
       {
         label: "フラット35 最頻金利",
@@ -374,20 +374,20 @@ export const marketSnapshot = {
     movements: [
       {
         label: "価格",
-        title: "成約単価は上昇を維持",
-        detail: "23区の4〜6月成約㎡単価は前年比+5.1%。高値圏そのものは崩れていません。",
+        title: "成約単価は前年比プラス",
+        detail: "23区の7月成約㎡単価は前年比+2.7%、前月比+3.5%。価格水準は上昇を維持しています。",
         tone: "positive",
       },
       {
         label: "流動性",
         title: "取引件数は二桁減",
-        detail: "同じ期間の成約件数は前年比−13.2%。価格だけでなく、売れるまでの時間を見る局面です。",
+        detail: "23区の7月成約件数は前年比−17.2%、城西は−23.3%。価格だけでなく、売れるまでの時間を見る局面です。",
         tone: "risk",
       },
       {
-        label: "売出",
-        title: "70㎡売出価格は26カ月ぶり反落",
-        detail: "23区の6月70㎡売出価格は前月比−0.8%。前年比では+23.3%ですが、成約価格ではありません。",
+        label: "供給",
+        title: "城西の売出・在庫が増加",
+        detail: "城西の7月新規登録件数は前年比+19.9%、在庫は+21.6%。売出㎡単価は前年比+7.5%ですが、成約価格ではありません。",
         tone: "caution",
       },
       {
@@ -404,12 +404,13 @@ export const marketSnapshot = {
       },
     ],
     watchNext: [
-      "国土交通省の2026年1〜3月取引データ（公表予定を経過・公開確認待ち）",
-      "東日本REINSの7月月例データ",
+      "東京23区の7月70㎡売出価格・募集賃料",
+      "東日本REINSの8月月例データ",
+      "国土交通省の2026年4〜6月取引データ（10月更新予定）",
       "日銀の9月17〜18日 金融政策決定会合",
     ],
     interpretation:
-      "売り手優位の価格水準は続く一方、何でも早く売れる相場ではありません。同一棟・近い面積の成約根拠を優先し、売出価格と成約価格を分けて判断するのが今週の要点です。",
+      "成約単価は上昇していますが、件数減と在庫増が同時に進んでいます。同一棟・近い面積の成約根拠を優先し、売出価格と成約価格を分けて判断するのが今週の要点です。",
   },
   priceTrend: {
     title: "3LDK取引㎡単価の推移と予測",
@@ -422,17 +423,17 @@ export const marketSnapshot = {
     series: priceTrendSeries,
     currentSignals: [
       {
-        label: "23区 6月成約㎡単価",
+        label: "23区 7月成約㎡単価",
         value: `前年比 +${forecastSignals.priceYoy.toFixed(1)}%`,
         direction: "up",
       },
       {
-        label: "23区 6月成約件数",
+        label: "23区 7月成約件数",
         value: `前年比 −${Math.abs(forecastSignals.volumeYoy).toFixed(1)}%`,
         direction: "down",
       },
       {
-        label: "城西 6月在庫",
+        label: "城西 7月在庫",
         value: `前年比 +${forecastSignals.inventoryYoy.toFixed(1)}%`,
         direction: "down",
       },
@@ -440,7 +441,7 @@ export const marketSnapshot = {
     model: {
       name: "階層縮小＋再開発差分モデル v0.2",
       trainedThrough: "2025年（暫定）",
-      nowcastAsOf: "2026年6月指標",
+      nowcastAsOf: "2026年7月指標",
       confidence: "低〜中",
       updateRule:
         "区ごとの直近伸びを上限付きで評価し、東京23区の最新月次シグナルへ75%縮小。再開発は既知計画の総額ではなく、新しい着工・供用確定・延期など『確度の前年差分』だけを最大±0.25ポイント/年で加えます。",
@@ -578,7 +579,7 @@ export const marketSnapshot = {
       rule:
         "事業種別 × 杉並への影響範囲 × 交通関連性 × 段階確度 × 供用接近度から期待寄与を評価し、住宅供給による競合を控除します。同じ計画の期待水準を毎年足さず、前回確認から確度が変わった分だけを成長率へ反映します。",
       currentTreatment:
-        "2026年は0.00ポイント。既知計画の大半は現在価格や6月市場シグナルに含まれうるためです。2027年は供用接近と計画進捗のネット差分として+0.05ポイントだけ加えます。",
+        "2026年は0.00ポイント。既知計画の大半は現在価格や直近市場シグナルに含まれうるためです。2027年は供用接近と計画進捗のネット差分として+0.05ポイントだけ加えます。",
       guardrail:
         "1案件と全案件に上限を設け、延期・中止・大量供給はマイナス更新も可能にします。ローリング検証で単純予測を上回らない場合は数値寄与を停止します。",
       disclaimer:
@@ -586,52 +587,52 @@ export const marketSnapshot = {
     },
   },
   regionalBenchmarks: [
-    { name: "杉並区", average3ldk: 8399, yoy: 9.72, sqmPrice: 97.7, sqmYoy: 2.55, kind: "target" },
-    { name: "東京都", average3ldk: 8035, yoy: 12.52, sqmPrice: 110.4, sqmYoy: 8.52, kind: "comparison" },
-    { name: "東京23区", average3ldk: 9440, yoy: 15.33, sqmPrice: 121.1, sqmYoy: 9.61, kind: "comparison" },
-    { name: "中野区", average3ldk: 8589, yoy: 5.68, sqmPrice: 107.9, sqmYoy: 9.34, kind: "comparison" },
-    { name: "世田谷区", average3ldk: 9531, yoy: 12.72, sqmPrice: 108.0, sqmYoy: 6.61, kind: "comparison" },
-    { name: "練馬区", average3ldk: 5837, yoy: 4.69, sqmPrice: 78.4, sqmYoy: -2.0, kind: "comparison" },
+    { name: "杉並区", average3ldk: 8106, yoy: 8.70, sqmPrice: 112.0, sqmYoy: 6.28, kind: "target" },
+    { name: "東京都", average3ldk: 7943, yoy: 13.17, sqmPrice: 105.0, sqmYoy: 11.52, kind: "comparison" },
+    { name: "東京23区", average3ldk: 9341, yoy: 15.18, sqmPrice: 121.4, sqmYoy: 13.15, kind: "comparison" },
+    { name: "中野区", average3ldk: 8498, yoy: -3.25, sqmPrice: 122.8, sqmYoy: 2.21, kind: "comparison" },
+    { name: "世田谷区", average3ldk: 10348, yoy: 15.73, sqmPrice: 135.2, sqmYoy: 13.59, kind: "comparison" },
+    { name: "練馬区", average3ldk: 5590, yoy: 4.92, sqmPrice: 82.1, sqmYoy: 4.70, kind: "comparison" },
   ] satisfies RegionalBenchmark[],
   marketPulse: {
     area: "東京都 城西地区（新宿・渋谷・杉並・中野）",
     closed: {
-      count: 269,
-      countYoy: -17.2,
-      price: 8470,
-      priceYoy: 1.3,
-      sqmPrice: 164.37,
-      sqmPriceYoy: 6.4,
+      count: 244,
+      countYoy: -23.3,
+      price: 8226,
+      priceYoy: 10.5,
+      sqmPrice: 156.93,
+      sqmPriceYoy: 10.3,
     },
     newListings: {
-      count: 1752,
-      countYoy: 19.4,
-      sqmPrice: 192.59,
-      sqmPriceYoy: 11.3,
+      count: 1695,
+      countYoy: 19.9,
+      sqmPrice: 188.97,
+      sqmPriceYoy: 7.5,
     },
     inventory: {
-      count: 4707,
-      countYoy: 19.0,
-      sqmPrice: 199.93,
-      sqmPriceYoy: 19.0,
+      count: 4815,
+      countYoy: 21.6,
+      sqmPrice: 200.47,
+      sqmPriceYoy: 16.7,
     },
-    askCloseGap: 17.2,
+    askCloseGap: 20.4,
   },
   aiAnalysis: {
     state: "observe" as const,
-    title: "固定金利上昇と成約減を見極める週",
+    title: "成約価格と流動性を切り分ける週",
     summary:
-      `対象タワーマンションの3LDK参考価格は8,280万〜9,640万円。8月のフラット35最頻金利は3.29%と前月比+0.15ポイントですが、新しいASK・CLOSE・INVENTORY・取引個票はなく、対象棟のESTIMATEや${suginamiNowcastText}のナウキャストは動かしていません。再開発も段階変化がなく、2027年の確度差分は+0.05ポイントのままです。`,
+      `対象タワーマンションの3LDK参考価格は8,280万〜9,640万円。7月の東京23区成約㎡単価は前年比+2.7%、成約件数は−17.2%、城西在庫は+21.6%でした。新しい月次シグナルと国交省個票を決定式へ反映し、杉並区のナウキャストは${suginamiNowcastText}です。対象棟のESTIMATEは新しい同一棟成約がないため据え置き、再開発の2027年確度差分も+0.05ポイントのままです。`,
     positives: [
-      "東京23区の4〜6月成約㎡単価は前年比 +5.1%",
+      "東京23区の7月成約㎡単価は前年比 +2.7%、前月比 +3.5%",
       "23区のファミリー型募集賃料は6月に前月比 +0.8%",
       `杉並区3LDKの2026年ナウキャスト中心は${suginamiNowcast?.midpoint.toFixed(1) ?? "算出待ち"}万円/㎡`,
       `再開発差分を含む杉並区3LDKの2027年中心は${suginamiOutlook?.midpoint.toFixed(1) ?? "算出待ち"}万円/㎡`,
     ],
     risks: [
-      "東京23区の4〜6月成約件数は前年比 −13.2%",
+      "東京23区の7月成約件数は前年比 −17.2%",
       "東京23区の6月70㎡売出価格は前月比 −0.8%（前年比 +23.3%）",
-      "城西地区では在庫と新規売出がともに前年比約 +19%",
+      "城西地区の7月成約件数は前年比 −23.3%、在庫は +21.6%",
       "8月のフラット35最頻金利は3.29%と前月比 +0.15ポイント",
       "笹塚の新規住宅供給は生活利便向上と競合増の両面があり、中野新北口は再計画中",
       "予測信頼度は低〜中。2025年は暫定で、築年・駅距離などの構成差は未調整",
@@ -639,11 +640,11 @@ export const marketSnapshot = {
     nextActions: [
       "同一棟・近い面積の新規成約が出たら価格レンジを更新",
       "売出価格ではなく、想定成約価格と販売期間をセットで比較",
-      "次回の月次統計、日銀会合、再開発の着工・供用・延期など公式な段階変化で再計算",
+      "次回の月次統計、国交省の次四半期、日銀会合、再開発の公式な段階変化で再計算",
     ],
     confidence: "C（公開情報3件を中心に推定）",
-    generatedAt: "2026-08-03T16:43:00+09:00",
-    nextReview: "2026-08-10",
+    generatedAt: "2026-08-13T11:31:00+09:00",
+    nextReview: "2026-08-17",
   },
   updateSchedule: [
     {
@@ -684,9 +685,9 @@ export const marketSnapshot = {
       usage: "東京23区の成約件数・価格・㎡単価",
     },
     {
-      label: "Market Watch 2026年6月",
+      label: "Market Watch 2026年7月",
       publisher: "東日本不動産流通機構",
-      url: "https://www.reins.or.jp/pdf/trend/mw/MW_202606data.pdf",
+      url: "https://www.reins.or.jp/pdf/trend/mw/MW_202607data.pdf",
       tier: "A",
       usage: "城西地区の成約・新規登録・在庫",
     },
@@ -705,7 +706,7 @@ export const marketSnapshot = {
       usage: "東京23区のファミリー型募集賃料",
     },
     {
-      label: "不動産取引価格情報 CSV",
+      label: "不動産取引価格情報 CSV（2026年第1四半期公表）",
       publisher: "国土交通省",
       url: "https://www.reinfolib.mlit.go.jp/realEstatePrices/",
       tier: "A",
