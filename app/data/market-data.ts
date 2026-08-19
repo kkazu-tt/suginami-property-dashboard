@@ -244,8 +244,8 @@ const suginamiNowcastText = suginamiNowcast
   : "算出待ち";
 
 export const marketSnapshot = {
-  asOf: "2026-08-13T11:31:00+09:00",
-  asOfLabel: "2026年8月13日 11:31 JST",
+  asOf: "2026-08-19T13:23:00+09:00",
+  asOfLabel: "2026年8月19日 13:23 JST",
   latestMarketPeriod: "2026年7月",
   property: {
     name: "杉並区内の対象タワーマンション",
@@ -302,10 +302,10 @@ export const marketSnapshot = {
     },
   ] satisfies BuildingComparable[],
   weeklyTokyo23: {
-    weekLabel: "2026年8月10日〜8月16日",
+    weekLabel: "2026年8月17日〜8月23日",
     status: "成約価格の上昇と流動性低下が併存",
     lead:
-      "8月10日公表の東日本REINSでは、7月の東京23区成約㎡単価が前年比で上昇する一方、成約件数は減少しました。城西では在庫増も続いており、CLOSE・INVENTORY・ASKを分けて確認します。",
+      "7月の東京23区成約㎡単価は前年比で上昇する一方、成約件数は減少しました。8月17日公表の募集賃料は上昇を維持していますが、成約賃料ではありません。CLOSE・INVENTORY・ASK・RENTを分けて確認します。",
     indicators: [
       {
         label: "23区 7月成約件数",
@@ -345,12 +345,12 @@ export const marketSnapshot = {
       },
       {
         label: "23区 募集賃料",
-        value: "5,118円/㎡",
-        change: "前月 +0.8%",
+        value: "5,157円/㎡",
+        change: "前年比 +6.3%／前月 +0.8%",
         direction: "up",
         kind: "RENT",
-        period: "2026年6月・7/16公表",
-        sample: "23区 n非公表／首都圏3カ月 n=49,799",
+        period: "2026年7月・8/17公表",
+        sample: "23区 n非公表／首都圏3カ月 n=49,813",
       },
       {
         label: "城西 在庫件数",
@@ -393,7 +393,7 @@ export const marketSnapshot = {
       {
         label: "賃料",
         title: "保有価値の下支え材料",
-        detail: "23区のファミリー型募集賃料は前月比+0.8%、前年比+6.6%。ただし募集賃料であり成約賃料ではありません。",
+        detail: "23区のファミリー型募集賃料は前月比+0.8%、前年比+6.3%。ただし募集賃料であり成約賃料ではありません。",
         tone: "caution",
       },
       {
@@ -404,7 +404,7 @@ export const marketSnapshot = {
       },
     ],
     watchNext: [
-      "東京23区の7月70㎡売出価格・募集賃料",
+      "東京23区の7月70㎡売出価格（8月24日公表予定）",
       "東日本REINSの8月月例データ",
       "国土交通省の2026年4〜6月取引データ（10月更新予定）",
       "日銀の9月17〜18日 金融政策決定会合",
@@ -625,7 +625,7 @@ export const marketSnapshot = {
       `対象タワーマンションの3LDK参考価格は8,280万〜9,640万円。7月の東京23区成約㎡単価は前年比+2.7%、成約件数は−17.2%、城西在庫は+21.6%でした。新しい月次シグナルと国交省個票を決定式へ反映し、杉並区のナウキャストは${suginamiNowcastText}です。対象棟のESTIMATEは新しい同一棟成約がないため据え置き、再開発の2027年確度差分も+0.05ポイントのままです。`,
     positives: [
       "東京23区の7月成約㎡単価は前年比 +2.7%、前月比 +3.5%",
-      "23区のファミリー型募集賃料は6月に前月比 +0.8%",
+      "23区のファミリー型募集賃料は7月に前年比 +6.3%、前月比 +0.8%",
       `杉並区3LDKの2026年ナウキャスト中心は${suginamiNowcast?.midpoint.toFixed(1) ?? "算出待ち"}万円/㎡`,
       `再開発差分を含む杉並区3LDKの2027年中心は${suginamiOutlook?.midpoint.toFixed(1) ?? "算出待ち"}万円/㎡`,
     ],
@@ -643,8 +643,8 @@ export const marketSnapshot = {
       "次回の月次統計、国交省の次四半期、日銀会合、再開発の公式な段階変化で再計算",
     ],
     confidence: "C（公開情報3件を中心に推定）",
-    generatedAt: "2026-08-13T11:31:00+09:00",
-    nextReview: "2026-08-17",
+    generatedAt: "2026-08-19T13:23:00+09:00",
+    nextReview: "2026-08-24",
   },
   updateSchedule: [
     {
@@ -699,11 +699,11 @@ export const marketSnapshot = {
       usage: "東京23区の売出価格・前年比・前月比（7月23日公表）",
     },
     {
-      label: "分譲マンション賃料 2026年6月",
+      label: "分譲マンション賃料 2026年7月",
       publisher: "東京カンテイ",
-      url: "https://www.kantei.ne.jp/wp-content/uploads/T202606.pdf",
+      url: "https://www.kantei.ne.jp/wp-content/uploads/T202607.pdf",
       tier: "B",
-      usage: "東京23区のファミリー型募集賃料",
+      usage: "東京23区のファミリー型募集賃料（8月17日公表）",
     },
     {
       label: "不動産取引価格情報 CSV（2026年第1四半期公表）",
