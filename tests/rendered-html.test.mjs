@@ -25,7 +25,9 @@ test("statically renders the public market dashboard", async () => {
   assert.match(html, /不動産情報ライブラリ 不動産取引価格情報/);
   assert.match(html, /東京23区の今週/);
   assert.match(html, /23区 70㎡売出価格/);
-  assert.match(html, /23区 n非公表／首都圏 n=38,780/);
+  assert.match(html, /1億2,724万円/);
+  assert.match(html, /2026年7月・8\/24公表/);
+  assert.match(html, /23区 n非公表／首都圏 n=39,421/);
   assert.match(html, /利用上の重要な注意/);
   assert.match(html, /法令上認められる範囲で責任を負いません/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|SkeletonPreview/);
