@@ -244,8 +244,8 @@ const suginamiNowcastText = suginamiNowcast
   : "算出待ち";
 
 export const marketSnapshot = {
-  asOf: "2026-08-24T11:21:55+09:00",
-  asOfLabel: "2026年8月24日 11:21 JST",
+  asOf: "2026-09-02T11:21:26+09:00",
+  asOfLabel: "2026年9月2日 11:21 JST",
   latestMarketPeriod: "2026年7月",
   property: {
     name: "杉並区内の対象タワーマンション",
@@ -363,11 +363,11 @@ export const marketSnapshot = {
       },
       {
         label: "フラット35 最頻金利",
-        value: "3.29%",
-        change: "前月 +0.15pt",
+        value: "3.46%",
+        change: "前月 +0.17pt",
         direction: "up",
         kind: "RATE",
-        period: "2026年8月・8/3公表",
+        period: "2026年9月・9/1公表",
         sample: "金利指標（n対象外）",
       },
     ],
@@ -399,7 +399,7 @@ export const marketSnapshot = {
       {
         label: "金利",
         title: "固定金利は再上昇",
-        detail: "8月のフラット35最頻金利は3.29%と前月比+0.15ポイント。日銀は7月31日に政策金利1.0%を据え置きました。",
+        detail: "9月のフラット35最頻金利は3.46%と前月比+0.17ポイント。日銀は7月31日に政策金利1.0%を据え置きました。",
         tone: "risk",
       },
     ],
@@ -633,7 +633,7 @@ export const marketSnapshot = {
       "東京23区の7月成約件数は前年比 −17.2%",
       "東京23区の7月70㎡売出価格は前月比 −0.1%（前年比 +21.4%）",
       "城西地区の7月成約件数は前年比 −23.3%、在庫は +21.6%",
-      "8月のフラット35最頻金利は3.29%と前月比 +0.15ポイント",
+      "9月のフラット35最頻金利は3.46%と前月比 +0.17ポイント",
       "笹塚の新規住宅供給は生活利便向上と競合増の両面があり、中野新北口は再計画中",
       "予測信頼度は低〜中。2025年は暫定で、築年・駅距離などの構成差は未調整",
     ],
@@ -643,8 +643,8 @@ export const marketSnapshot = {
       "次回の月次統計、国交省の次四半期、日銀会合、再開発の公式な段階変化で再計算",
     ],
     confidence: "C（公開情報3件を中心に推定）",
-    generatedAt: "2026-08-24T11:21:55+09:00",
-    nextReview: "2026-08-31",
+    generatedAt: "2026-09-02T11:21:26+09:00",
+    nextReview: "2026-09-07",
   },
   updateSchedule: [
     {
@@ -776,11 +776,11 @@ export const marketSnapshot = {
       usage: "政策金利1.0%の据え置き確認",
     },
     {
-      label: "フラット35 金利情報（2026年8月）",
+      label: "フラット35 金利情報（2026年9月）",
       publisher: "住宅金融支援機構",
       url: "https://www.simulation.jhf.go.jp/flat35/kinri/index.php/rates/top",
       tier: "A",
-      usage: "全期間固定金利の月次確認（8月3日公表）",
+      usage: "全期間固定金利の月次確認（9月1日公表）",
     },
   ],
 };
