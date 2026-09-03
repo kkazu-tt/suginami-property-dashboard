@@ -55,10 +55,11 @@ const forecastSignals = {
 const noRedevelopmentAdjustment = { 2026: 0, 2027: 0 };
 const suginamiRedevelopmentAdjustment = {
   // Known projects are assumed to be reflected in current comparables and the
-  // July market signal. Only the small, incremental change in certainty is
-  // added to the 2027 growth rate; the annual safeguard is +/-25bp.
+  // July market signal. The FY2025 progress report moved the Honancho-area
+  // utility-undergrounding completion to FY2028, reducing the 2027 increment
+  // by 1bp; the annual safeguard is +/-25bp.
   2026: 0,
-  2027: 5,
+  2027: 4,
 };
 
 function clampNumber(value: number, min: number, max: number) {
@@ -244,8 +245,8 @@ const suginamiNowcastText = suginamiNowcast
   : "算出待ち";
 
 export const marketSnapshot = {
-  asOf: "2026-09-02T11:21:26+09:00",
-  asOfLabel: "2026年9月2日 11:21 JST",
+  asOf: "2026-09-03T15:08:22+09:00",
+  asOfLabel: "2026年9月3日 15:08 JST",
   latestMarketPeriod: "2026年7月",
   property: {
     name: "杉並区内の対象タワーマンション",
@@ -454,7 +455,7 @@ export const marketSnapshot = {
       "2025年は第4四半期の回答が今後追加される可能性があるため暫定値です。建築年・駅距離・所在・階・室内状態などの構成差は未調整で、個別住戸の査定や公的な価格指数ではありません。再開発の実現・延期・住宅供給増も不確実で、2026年ナウキャストと2027年予測は将来価格を保証しません。",
   },
   redevelopment: {
-    asOfLabel: "2026年8月3日確認",
+    asOfLabel: "2026年9月3日確認",
     title: "周辺再開発・まちづくりウォッチ",
     lead:
       "方南町生活圏の防災・歩行環境と、笹塚・中野・新宿の駅周辺更新を公式資料で追跡しています。対象棟への影響は距離、交通上のつながり、事業段階、供用時期、住宅供給を分けて評価します。",
@@ -491,18 +492,18 @@ export const marketSnapshot = {
         id: "honan-barrier-free",
         name: "方南町駅周辺 バリアフリー特定事業",
         area: "方南町駅周辺",
-        stage: "実施中",
-        stageTone: "progress",
-        timing: "2023〜2030年度",
+        stage: "一部延期・実施中",
+        stageTone: "watch",
+        timing: "2023〜2030年度／無電柱化は2028年度完了予定",
         relation: "最寄駅周辺・直接",
         effect: "駅・道路・バス動線",
         summary:
-          "駅と生活関連施設を結ぶ経路の段差、案内、歩行環境などを継続改善。確認できる範囲で、方南町駅前の大規模複合再開発ではありません。",
-        priceChannel: "高齢者・子育て世帯を含む歩きやすさを小幅に評価。",
-        contribution2027Bps: 1,
+          "駅と生活関連施設を結ぶ経路の改善を継続中。令和7年度末進捗では、環状7号線の無電柱化は方南町駅周辺で2028年度完了予定となり、前年度資料の方南通り以北2026年度予定から後ろ倒しです。方南町駅前の大規模複合再開発ではありません。",
+        priceChannel: "歩きやすさは追い風ですが、供用の後ろ倒しにより2027年までの確度差分は0に更新。",
+        contribution2027Bps: 0,
         confidence: "実施 高／価格波及 低",
         sourceLabel: "杉並区",
-        sourceUrl: "https://www.city.suginami.tokyo.jp/s092/6223.html",
+        sourceUrl: "https://www.city.suginami.tokyo.jp/documents/6223/04-r7honan.pdf",
       },
       {
         id: "nakano-station",
@@ -579,7 +580,7 @@ export const marketSnapshot = {
       rule:
         "事業種別 × 杉並への影響範囲 × 交通関連性 × 段階確度 × 供用接近度から期待寄与を評価し、住宅供給による競合を控除します。同じ計画の期待水準を毎年足さず、前回確認から確度が変わった分だけを成長率へ反映します。",
       currentTreatment:
-        "2026年は0.00ポイント。既知計画の大半は現在価格や直近市場シグナルに含まれうるためです。2027年は供用接近と計画進捗のネット差分として+0.05ポイントだけ加えます。",
+        "2026年は0.00ポイント。既知計画の大半は現在価格や直近市場シグナルに含まれうるためです。2027年は方南町駅周辺の無電柱化延期を−0.01ポイント反映し、ネット差分を+0.04ポイントに更新します。",
       guardrail:
         "1案件と全案件に上限を設け、延期・中止・大量供給はマイナス更新も可能にします。ローリング検証で単純予測を上回らない場合は数値寄与を停止します。",
       disclaimer:
@@ -622,7 +623,7 @@ export const marketSnapshot = {
     state: "observe" as const,
     title: "成約価格と流動性を切り分ける週",
     summary:
-      `対象タワーマンションの3LDK参考価格は8,280万〜9,640万円。7月の東京23区成約㎡単価は前年比+2.7%、成約件数は−17.2%、70㎡売出価格は前年比+21.4%・前月比−0.1%でした。ASKは決定式の月次シグナルではないため、杉並区のナウキャストは${suginamiNowcastText}で据え置きです。対象棟のESTIMATEと再開発の2027年確度差分も変えていません。`,
+      `対象タワーマンションの3LDK参考価格は8,280万〜9,640万円。7月の東京23区成約㎡単価は前年比+2.7%、成約件数は−17.2%、70㎡売出価格は前年比+21.4%・前月比−0.1%でした。ASKは決定式の月次シグナルではないため、杉並区のナウキャストは${suginamiNowcastText}で据え置きです。対象棟のESTIMATEは据え置き、再開発の2027年寄与は延期を反映して+0.04ポイントにしました。`,
     positives: [
       "東京23区の7月成約㎡単価は前年比 +2.7%、前月比 +3.5%",
       "23区のファミリー型募集賃料は7月に前年比 +6.3%、前月比 +0.8%",
@@ -634,6 +635,7 @@ export const marketSnapshot = {
       "東京23区の7月70㎡売出価格は前月比 −0.1%（前年比 +21.4%）",
       "城西地区の7月成約件数は前年比 −23.3%、在庫は +21.6%",
       "9月のフラット35最頻金利は3.46%と前月比 +0.17ポイント",
+      "方南町駅周辺の無電柱化は2028年度完了予定となり、前年度資料の方南通り以北2026年度予定から後ろ倒し",
       "笹塚の新規住宅供給は生活利便向上と競合増の両面があり、中野新北口は再計画中",
       "予測信頼度は低〜中。2025年は暫定で、築年・駅距離などの構成差は未調整",
     ],
@@ -643,7 +645,7 @@ export const marketSnapshot = {
       "次回の月次統計、国交省の次四半期、日銀会合、再開発の公式な段階変化で再計算",
     ],
     confidence: "C（公開情報3件を中心に推定）",
-    generatedAt: "2026-09-02T11:21:26+09:00",
+    generatedAt: "2026-09-03T15:08:22+09:00",
     nextReview: "2026-09-07",
   },
   updateSchedule: [
@@ -720,11 +722,11 @@ export const marketSnapshot = {
       usage: "防災まちづくり計画・ルール検討の段階確認",
     },
     {
-      label: "杉並区バリアフリー基本構想",
+      label: "方南町駅周辺 バリアフリー特定事業（令和7年度末進捗）",
       publisher: "杉並区",
-      url: "https://www.city.suginami.tokyo.jp/s092/6223.html",
+      url: "https://www.city.suginami.tokyo.jp/documents/6223/04-r7honan.pdf",
       tier: "A",
-      usage: "方南町駅周辺の特定事業と進捗確認",
+      usage: "無電柱化の2028年度完了予定と前年度からの後ろ倒し確認",
     },
     {
       label: "中野駅西側南北通路・橋上駅舎の供用",

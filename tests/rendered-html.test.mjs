@@ -21,7 +21,8 @@ test("statically renders the public market dashboard", async () => {
   assert.match(html, /基礎予測/);
   assert.match(html, /計画見直し中/);
   assert.match(html, /二重計上を避けるため、現状価格への追加補正は0.00ポイント/);
-  assert.match(html, /2027年は供用接近と計画進捗のネット差分として\+0.05ポイント/);
+  assert.match(html, /2027年は方南町駅周辺の無電柱化延期を−0.01ポイント反映し、ネット差分を\+0.04ポイント/);
+  assert.match(html, /一部延期・実施中/);
   assert.match(html, /不動産情報ライブラリ 不動産取引価格情報/);
   assert.match(html, /東京23区の今週/);
   assert.match(html, /23区 70㎡売出価格/);
